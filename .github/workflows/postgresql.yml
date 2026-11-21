@@ -1,0 +1,51 @@
+name: PostgreSQL analytics
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  sql:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - name: Validate the repository and run PostgreSQL checks
+        shell: bash
+        run: |
+          for script in scripts/*.sh; do bash -n "$script"; done
+          git check-ignore .catsql/check.env
+          test -z "$(git ls-files -ci --exclude-standard)"
+          CONTAINER_ENGINE=docker ./scripts/verify.sh
+  powershell-container:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - shell: pwsh
+        run: ./scripts/check-demo.ps1
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - shell: pwsh
+        run: |
+          foreach ($file in Get-ChildItem scripts/*.ps1) {
+              $tokens = $null
+              $errors = $null
+              $null = [System.Management.Automation.Language.Parser]::ParseFile($file.FullName, [ref]$tokens, [ref]$errors)
+              if ($errors) { throw ($errors | Out-String) }
+          }
+          $env:CATSQL_PORT = '70000'
+          $output = & pwsh -NoProfile -File ./scripts/demo.ps1 info 2>&1
+          if ($LASTEXITCODE -ne 1 -or ($output | Out-String) -notmatch 'valid TCP port') {
+              throw ($output | Out-String)
+          }
+          exit 0
