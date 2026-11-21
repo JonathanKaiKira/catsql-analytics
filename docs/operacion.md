@@ -4,7 +4,7 @@
 2. Ejecuta `start` y `info` desde el script de tu sistema. Abre **Database → New Database Connection → PostgreSQL**.
 3. Usa host `127.0.0.1`, puerto `55442`, base `catsql` y usuario `catsql_dev`. Copia solo el valor de `POSTGRES_PASSWORD` del archivo privado indicado por `info` en el campo de contraseña. Pulsa **Test Connection** y descarga JDBC si se solicita.
 4. En **Database Navigator**, expande **Schemas → catdb → Tables** y **Schemas → analytics → Views**. Abre `sql/queries/10_expense_category_ranking.sql` y usa **Ctrl+Enter**. Compara `rank` y `dense_rank` de `supplies`. Ordena mediante las cabeceras de la cuadrícula o mediante el `ORDER BY` final. Revisa el [catálogo](consultas.md) para interpretar cada resultado.
-5. Abre `sql/performance/benchmark.sql` con la misma conexión. Ejecuta todo con **SQL Editor → Execute SQL Script**. Revisa cada resultado de `EXPLAIN` y sus bloques de buffers en las pestañas de resultados. Ejecutar una sentencia aislada antes de crear la tabla temporal provocará un error de relación inexistente.
+5. Abre `sql/performance/benchmark.sql` con una sesión de CatSQL dedicada, con autocommit activado y sin cambios pendientes. Ejecuta todo con **SQL Editor → Execute SQL Script**. Revisa cada resultado de `EXPLAIN` y sus bloques de buffers en las pestañas de resultados. Ejecutar una sentencia aislada antes de crear la tabla temporal provocará un error de relación inexistente.
 6. Desconecta DBeaver y ejecuta `stop`. Conserva el volumen y su credencial. Ejecuta `start` para retomar los datos.
 
 Para exportar localmente, abre el menú contextual del resultado y elige **Export Data → CSV**. Guarda el archivo fuera de Git o usa la extensión `.csv`, que el repositorio ignora.

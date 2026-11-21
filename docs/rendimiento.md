@@ -4,7 +4,7 @@ La consulta suma `amount_clp` para un gato y siete días. Su filtro usa igualdad
 
 ## Reproducción
 
-Inicia CatSQL y ejecuta completo [benchmark.sql](../sql/performance/benchmark.sql) en una sesión de DBeaver. Desde Fedora, con la instancia predeterminada, también puedes ejecutar:
+Inicia CatSQL y ejecuta completo [benchmark.sql](../sql/performance/benchmark.sql) en una sesión de DBeaver dedicada, con autocommit activado y sin cambios pendientes. Desde Fedora, con la instancia predeterminada, también puedes ejecutar:
 
 ```bash
 podman exec -i catsql-analytics-demo psql -X -v ON_ERROR_STOP=1 -U catsql_dev -d catsql < sql/performance/benchmark.sql

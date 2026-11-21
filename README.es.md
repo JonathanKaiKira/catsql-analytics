@@ -55,7 +55,7 @@ cd catsql-analytics
 
 Conecta DBeaver mientras esté iniciada la demostración. Usa host `127.0.0.1`, puerto `55442`, base `catsql`, usuario `catsql_dev` y la contraseña generada del archivo privado que indica `info`. Selecciona PostgreSQL y descarga el controlador JDBC si se solicita. Abre `sql/queries/22_cat_summary.sql` con la conexión CatSQL y pulsa `Ctrl+Enter`. Para exportar el resultado, elige **Export Data** en la cuadrícula y selecciona CSV. Consulta la [guía de operación y DBeaver](docs/operacion.md).
 
-Abre `sql/performance/benchmark.sql` y ejecuta el script completo en una sesión. Genera 120.000 filas temporales, mide la misma agregación antes y después de crear un índice y compara predicados equivalentes. Los cambios se revierten al final. Consulta los [planes medidos y sus límites](docs/rendimiento.md).
+Abre `sql/performance/benchmark.sql` y ejecuta el script completo en una sesión dedicada sin cambios pendientes. Genera 120.000 filas temporales, mide la misma agregación antes y después de crear un índice y compara predicados equivalentes. Los cambios se revierten al final. Consulta los [planes medidos y sus límites](docs/rendimiento.md).
 
 ## Pruebas y ciclo de datos
 

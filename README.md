@@ -55,7 +55,7 @@ cd catsql-analytics
 
 Connect DBeaver while the demo is running. Use host `127.0.0.1`, port `55442`, database `catsql`, user `catsql_dev` and the generated password from the private file displayed by `info`. Select PostgreSQL and download the JDBC driver when prompted. Open `sql/queries/22_cat_summary.sql` in the CatSQL editor and press `Ctrl+Enter`. To export, use **Export Data** from the grid and choose CSV. See [operation and DBeaver](docs/operacion.md).
 
-Open `sql/performance/benchmark.sql` and run the complete script in one session. It generates 120,000 temporary rows, measures the same aggregate before and after creating an index, and compares equivalent predicates. It rolls back the setup. See the [recorded plans and limitations](docs/rendimiento.md).
+Open `sql/performance/benchmark.sql` and run the complete script in a dedicated session with no pending edits. It generates 120,000 temporary rows, measures the same aggregate before and after creating an index, and compares equivalent predicates. It rolls back the setup. See the [recorded plans and limitations](docs/rendimiento.md).
 
 ## Testing and data lifecycle
 
