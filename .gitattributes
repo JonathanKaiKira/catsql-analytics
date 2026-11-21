@@ -1,0 +1,5 @@
+*.sql text eol=lf linguist-detectable=true
+*.sh text eol=lf
+*.ps1 text eol=lf
+*.md text eol=lf
+*.tsv text eol=lf

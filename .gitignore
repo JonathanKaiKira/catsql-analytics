@@ -1,0 +1,8 @@
+.catsql/
+.env
+.env.*
+*.pem
+*.key
+*.dump
+*.log
+*.csv
